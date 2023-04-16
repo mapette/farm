@@ -18,18 +18,18 @@ const getAllStoragePlaces = (request, response) => {
 
 const getOneStoragePlace = (request, response) => {
     const { params } = request
-    let storPl =
+    let stock =
         stockById(params.id)
-            .then(sp => {
-                storPl = sp
+            .then(st => {
+                stock = st
                 itemsList()
-                    .then(items => items.filter(item => item.id_storage === parseInt(request.params.id)))
+                    .then(items => items.filter(item => item.id_stock === parseInt(request.params.id)))
                     .then(items => {
-                        storPl.sp_items = []
+                        stock.stock_items = []
                         items.forEach(item => {
-                            storPl.sp_items.push(item)
+                            stock.stock_items.push(item)
                         })
-                        response.send(storPl)
+                        response.send(stock)
                     })
             })
 }

@@ -1,7 +1,7 @@
 import {DataTypes, Op} from 'sequelize'
 import db from '../../db/db.js'
 
-const items = db.define('items',{
+const stock = db.define('stocks',{
     id : {
         type : DataTypes.INTEGER.UNSIGNED,
         primaryKey : true,
@@ -12,15 +12,11 @@ const items = db.define('items',{
         type : DataTypes.STRING,
         allowNull : false,
     },
-    nb : {
+    capacity : {
         type : DataTypes.STRING,
         allowNull : false,
     },
-    id_storage : {
-        type : DataTypes.STRING,
-        allowNull : false,
-    },
-    item_storage : {
+    stock_items : {
         type : DataTypes.VIRTUAL,
     },
 },{
@@ -28,4 +24,4 @@ const items = db.define('items',{
     timestamps: false,
 })
 
-export default items
+export default stock

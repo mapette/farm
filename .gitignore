@@ -1,1 +1,4 @@
 /node_modules
+/farm_back/node_modules
+/farm_front/node_modules
+*.bat
