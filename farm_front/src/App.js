@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import Test from './Test'
+import Test from './pages/Test'
 
 function App() {
   return (

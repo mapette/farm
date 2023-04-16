@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import Button from './Button'
+import Button from '../tools/Button'
 
 function Test() {
 
   let [txt, setTxt] = useState('hello word')
 
-    //setTxt('bonjour tout le monde')
 
   return (
     <div>
