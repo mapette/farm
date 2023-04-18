@@ -20,9 +20,9 @@ const items = db.define('items',{
         type : DataTypes.STRING,
         allowNull : false,
     },
-    item_stock : {
-        type : DataTypes.VIRTUAL,
-    },
+    // name_stock : {
+    //     type : DataTypes.VIRTUAL,
+    // },
 },{
     freezeTableName: true,
     timestamps: false,

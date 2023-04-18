@@ -11,27 +11,26 @@ import {
 
 
 const getAllStoragePlaces = (request, response) => {
-    stockList()
+    stockList() 
         .then(list => response.send(list))
 }
 
-
 const getOneStoragePlace = (request, response) => {
-    const { params } = request
-    let stock =
-        stockById(params.id)
-            .then(st => {
-                stock = st
-                itemsList()
-                    .then(items => items.filter(item => item.id_stock === parseInt(request.params.id)))
-                    .then(items => {
-                        stock.stock_items = []
-                        items.forEach(item => {
-                            stock.stock_items.push(item)
-                        })
-                        response.send(stock)
-                    })
-            })
+    // const { params } = request
+    // let stock 
+    //     stockById(params.id)
+    //         .then(st => {
+    //             stock = st
+    //             itemsList()
+    //                 .then(items => items.filter(item => item.id_stock === parseInt(request.params.id)))
+    //                 .then(items => {
+    //                     stock.stock_items = []
+    //                     items.forEach(item => {
+    //                         stock.stock_items.push(item)
+    //                     })
+    //                     response.send(stock)
+    //                 })
+    //         })
 }
 
 

@@ -12,20 +12,21 @@ const getAllItems = (request, response) => {
         .then(list => response.send(list))
 }
 
-
-
 const getOneItem = (request, response) => {
     const { params } = request
-    let item =
-        itemsById(params.id)
-            .then(it => {
-                item = it
-                stockById(item.id_storage)
-                    .then(sp => {
-                        item.item_storage = sp
-                        response.send(item)
-                    })
-            })
+    itemsById(params.id)
+        .then(item => response.send(item))
+    // const { params } = request
+    // let item = ???                                                  
+    //     itemsById(params.id)
+    //         .then(it => {
+    //             item = it
+    //             stockById(item.id_storage)
+    //                 .then(sp => {
+    //                     item.item_storage = sp
+    //                     response.send(item)
+    //                 })
+    //         })
 }
 
 const increaseOneItem = (request, response) => {
@@ -53,8 +54,8 @@ const decreaseOneItem = (request, response) => {
 }
 
 const nbOfItems = (request, response) => {
-    sumOfItemsByStorPl({id_sp : request.params.id})
-    .then(nb => response.send(nb))  
+    // sumOfItemsByStorPl({id_sp : request.params.id})
+    // .then(nb => response.send(nb))  
 }
 
 export {

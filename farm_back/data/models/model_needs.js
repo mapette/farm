@@ -20,12 +20,12 @@ const needs = db.define('needs',{
         type : DataTypes.INTEGER,
         allowNull : false,
     }, 
-    recipe : {
-        type : DataTypes.VIRTUAL,
-    },
-    item : {
-        type : DataTypes.VIRTUAL,
-    },
+    // recipe : {
+    //     type : DataTypes.VIRTUAL,
+    // },
+    // item : {
+    //     type : DataTypes.VIRTUAL,
+    // },
 },{
     freezeTableName: true,
     timestamps: false,

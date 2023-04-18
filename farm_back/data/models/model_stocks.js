@@ -16,9 +16,9 @@ const stock = db.define('stocks',{
         type : DataTypes.STRING,
         allowNull : false,
     },
-    stock_items : {
-        type : DataTypes.VIRTUAL,
-    },
+    // stock_items : {
+    //     type : DataTypes.VIRTUAL,
+    // },
 },{
     freezeTableName: true,
     timestamps: false,

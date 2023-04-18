@@ -1,1 +1,21 @@
 
+.gauche{
+    text-align: left;
+    }
+  .droite{
+    text-align: right;
+  }
+  .centre{
+    text-align: center;
+  }
+
+.largeur-50{
+    width: 50px;
+  }
+  .largeur-100{
+    width: 100px;
+  }
+
+  .cadre-15{
+    margin: 15px;
+  }

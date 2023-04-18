@@ -1,9 +1,17 @@
 import Items from '../models/model_Items.js'
 import db from '../../db/db.js'
-import {Sequelize, } from 'sequelize'
+import { Sequelize, } from 'sequelize'
 
 const itemsList = () => {
-    return Items.findAll()
+    return Items.sync({ alter: false }).then(() => {
+        return db.query(`
+            select i.id, i.nb, i.name name, i.id_stock, s.name name_stock from items i, stocks s 
+                where i.id_stock = s.id`,
+            {
+                type: Sequelize.QueryTypes.SELECT,
+                model: Items,
+            })
+    })
 }
 
 const itemsById = (id) => {
@@ -15,16 +23,16 @@ const saveItem = (data) => {
 }
 
 const sumOfItemsByStorPl = (data) => {
-    return Items.sync({alter:false}).then(()=>{
-        return db.query(`
-        select sum(nb) nb from items i, stocks s 
-            where i.id_storage = s.id
-            and s.id = :id;`,
-        {type: Sequelize.QueryTypes.SELECT,
-            model: Items,
-            replacements: { id: data.id_sp },
-        })
-    })
+    // return Items.sync({alter:false}).then(()=>{
+    //     return db.query(`
+    //     select sum(nb) nb from items i, stocks s 
+    //         where i.id_storage = s.id
+    //         and s.id = :id;`,
+    //     {type: Sequelize.QueryTypes.SELECT,
+    //         model: Items,
+    //         replacements: { id: data.id_sp },
+    //     })
+    // })
 }
 
 

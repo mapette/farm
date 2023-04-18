@@ -16,9 +16,9 @@ const recipes = db.define('recipes',{
         type : DataTypes.INTEGER,
         allowNull : false,
     },
-    prod_place : {
-        type : DataTypes.VIRTUAL,
-    },
+    // prod_place : {
+    //     type : DataTypes.VIRTUAL,
+    // },
 },{
     freezeTableName: true,
     timestamps: false,
