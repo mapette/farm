@@ -9,6 +9,10 @@
     text-align: center;
   }
 
+  .gras{
+    font-weight: bold;
+  }
+  
 .largeur-50{
     width: 50px;
   }

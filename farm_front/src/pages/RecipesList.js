@@ -1,20 +1,67 @@
 import { useState, useEffect } from 'react';
 import Button from '../tools/Button'
+
+import cl_pp from '../class/cl_pp'
 const lib = require('../lib/lib_divers')
 
-function RecipesList() {
+function RecipesList(props) {
 
-  let [itemsList, setItemsList] = useState([])
-
+  let [ppList, setPpList] = useState([])
+  let [recipesList, setRecipesList] = useState([])
+    // pp in progress
+  let [detailsPP, setDetailsPP] = useState(new cl_pp.Product_place({ id: 0, name: '', rec: '', }))
+  let [recipesOnThisPp, setRecipes] = useState([])
   useEffect(() => {
-    fetch(lib.ROOT + 'items', lib.optionsREST('GET',))
+    fetch(lib.ROOT + 'pp', lib.optionsREST('GET',))
       .then(response => response.json())
       .then(response => {
-        console.log(response)
-           setItemsList(itemsList = response)
+        setPpList(ppList = response)
+        console.log('stock',ppList)
+      })
+    fetch(lib.ROOT + 'recipes', lib.optionsREST('GET',))
+      .then(response => response.json())
+      .then(response => {
+        setRecipesList(recipesList = response)
       })
   }, [])
 
+
+  function switchStockDetails(pp) {
+    if (detailsPP.id == pp.id) { setDetailsPP({ ...detailsPP, id: 0, }) }
+    else {
+      setDetailsPP(detailsPP = new cl_pp.Product_place({  
+        id: pp.id,
+        name: pp.name,
+        rec: pp.rec,
+      }))
+      setRecipes(recipesOnThisPp = recipesList.filter(rec => pp.id == rec.id_pp))  
+    }
+  }
+
+  return (
+    <div className="">
+      {ppList.map(it =>
+        <Button
+          txt={it.name + ' ' + it.recipe_in_progress}
+          actionToDo={() => switchStockDetails(it)}
+        />
+      )}
+      <div>
+        {detailsPP.id > 0 &&
+          recipesOnThisPp.map(it =>
+            <Button
+              txt={it.name}
+            />
+          )}
+      </div>
+    </div>
+  )
+
+}
+
+  export default RecipesList;
+
+/*
 
   function showDetails(id) {
     console.log(id)
@@ -30,35 +77,7 @@ function RecipesList() {
     //   })
     //   }
   }
-
-  return (
-    <div className="container no-gutter mx-auto">
-      <table className="cadre-15 ">
-        <thead>
-          <th className='largeur-50'>id</th>
-          <th className='largeur-100 gauche'>nom</th>
-          <th className='largeur-50 '>qt</th>
-          <th className='largeur-100 gauche'>stockage</th>
-        </thead>
-        <tbody>
-          {itemsList.map(it =>
-            <tr key={it.id} onClick={() => showDetails(it.id)}>
-              <td className=''>{it.id}</td>
-              <td className='gauche'>{it.name}</td>
-              <td className=''>{it.nb}</td>
-              <td className='gauche'>{it.name_stock}</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-  )
-
-}
-
-export default RecipesList;
-
-/*
+  
         <tbody>
           {props.prestaList.map(presta =>
             <tr key={presta.presta_id} onClick={() => showDetails(presta.presta_id)}>
